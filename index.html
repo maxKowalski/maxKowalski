@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Max Kowalski – Engineering Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 2rem;
+      max-width: 900px;
+      line-height: 1.5;
+    }
+    header {
+      margin-bottom: 2rem;
+    }
+    h1 { margin-bottom: 0.2rem; }
+    nav a {
+      margin-right: 1rem;
+      text-decoration: none;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    .project {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .project h3 {
+      margin-top: 0;
+      margin-bottom: 0.3rem;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Max Kowalski</h1>
+    <p>Mechanical & Robotics Engineer</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      I design and build real-world robotic systems including custom actuators, motion platforms,
+      full autonomous mobile robots deployed in commercial applications. This portfolio highlights a selection  
+      of hands-on engineering projects, prototypes, and production-intent designs.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Selected Projects</h2>
+
+    <article class="project">
+      <h3>Autonomous Mobile-Manipulation Robot</h3>
+      <p><strong>Role:</strong> Lead Mechanical Engineer</p>
+      <ul>
+        <li>Owned design, integration, and testing of multi-DOF robotic tooling and custom AMR platform.</li>
+        <li>Developed production-intent mechanisms with DFM/DFA and reliability in mind.</li>
+        <li>Coordinated with suppliers for CNC, additive, and electronic assemblies.</li>
+      </ul>
+    </article>
+
+    <article class="project">
+      <h3>Mobile Autonomous Projectile-Launching Robot</h3>
+      <p><strong>Role:</strong> Mechatronics & Controls</p>
+      <ul>
+        <li>Designed mecanum-drive chassis and high-speed projectile launcher for competition.</li>
+        <li>Implemented sensing + OpenCV-based vision targeting and state-space/PD control.</li>
+      </ul>
+    </article>
+
+    <!-- Add more projects here -->
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <ul>
+      <li>Mechanical Design: SolidWorks, Fusion 360, DFM/DFA, tolerance analysis</li>
+      <li>Robotics: ROS2, motion planning, actuator design, system integration</li>
+      <li>Manufacturing: CNC machining, 3D printing (FDM/SLA/MJF), vendor coordination</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:max@maxkowalski.com">max@maxkowalski.com</a></p>
+    <!-- You can add a link to your Instagram handle textually here (no hyperlink if you prefer) -->
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Max Kowalski</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
