@@ -1,0 +1,164 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Themes: Awesome-CV
+\documentclass[]{awesome-cv}
+\usepackage{textcomp}
+%%% Override a directory location for fonts(default: 'fonts/')
+\fontdir[fonts/]
+
+%%% Configure a directory location for sections
+\newcommand*{\sectiondir}{resume/}
+
+%%% Override color
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+%% Color for highlight
+% Define your custom color if you don't like awesome colors
+\colorlet{awesome}{awesome-red}
+%\definecolor{awesome}{HTML}{CA63A8}
+%% Colors for text - Set all text colors to black
+\definecolor{darktext}{HTML}{000000}
+\definecolor{text}{HTML}{000000}
+\definecolor{graytext}{HTML}{000000}
+\definecolor{lighttext}{HTML}{000000}
+
+%% Hyperlink colors
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    filecolor=blue,
+    citecolor=blue
+}
+
+%%% Override a separator for social informations in header(default: ' | ')
+%\headersocialsep[\quad\textbar\quad]
+    \begin{document}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Profile
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \begin{center}
+	\headerfirstnamestyle{Maximilian} \headerlastnamestyle{Kowalski} \\
+	\vspace{2mm}
+	{\faEnvelope\ maxkowalski715@gmail.com} | {\faMobile\ (714)853-3574} | \href{https://www.linkedin.com/in/max-kowalski}{linkedin.com/in/max-kowalski} | \href{https://max-kowalski.com}{max-kowalski.com}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Education
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-3mm}
+\cvsection{Education}
+\begin{cventries}
+	\cventry
+	{Grad Courses: Design for Manufacturability, and Mechatronics and Robotics}
+	{University of Colorado, Boulder: BS in Mechanical Engineering}
+	{Boulder, Colorado}
+	{Aug 2019 – May 2023}
+	{}
+\end{cventries}
+
+\vspace{-7mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Skills
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Technical Skills}
+\vspace{-3mm}
+\begin{cvskills}
+    \cvskill{Design/Analysis:}{SolidWorks CSWA, SolidWorks Analysis, NX, CREO, Fusion360, 6SigmaET, Mesh Editors, Various PDM Systems}
+    \cvskill{Programming:}{C++, Python, Matlab, Simulink, Arduino, ROS2 Humble, MoveIt2}
+    \cvskill{Engineering:}{GD\&T, DFM, DFA, Manufacturing and Assembly Instructions, Systems Engineering, Team Management}
+    \cvskill{Manufacturing:}{3-axis and 5-axis CNC milling, CNC router, lathe, TIG/MIG Welding, FDM/SLS/SLA 3D printing, Bandsaw, Drill Press, Hand Tools}
+\end{cvskills}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Experience
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cvsection{Professional Experience}
+\vspace{-3mm}
+\begin{cventries}
+    \cventry
+	{Electro-Mechanical Engineer}
+	{Kazvu Labs}
+	{Anahiem, California}
+	{May 2024 – Present}
+	{\begin{cvitems}
+        \item{Co-designed, built, and integrated a novel 1.8 m 7-axis collaborative robotic arm for human-centric tasks for commercial environments.}
+        \item{Owned end-to-end development of three custom actuator sizes utilizing strain-wave gearboxes and 3-phase BLDC motors ($\sim$63–298 Nm), including architecture, detailed design, part selection, verification testing, manufacturing, and assembly.}
+        \item{Integrated a custom friction-pin brake, dual high-resolution absolute encoders, and precision bearing preload, and commissioned/tuned COTS motion controllers, including electrical interface design, wire harnessing, and full system-level integration.}
+        \item{Analyzed joint torque data from recorded robot trajectories to ensure proper actuator sizing and reliability of brake system. Contributed to a multimodal structural optimization, analyzing robot permutations through Forward Kinematics-based workspace exploration and Jacobian analysis.}
+        \item{Delivered alpha unit in 13 months at $\sim$50\% of UR10e BOM cost with +/- .5mm accuracy and 100\% workspace coverage.}
+        \item{Owned setup of SolidWorks 3DEXPERIENCE PDM and a standardized, unique part numbering system and the transition to NX with an on-prem server deployment}
+        \item{Architected and prototyped modular mobile robotic tooling systems to support a wide range of surface-interaction and material-handling processes.}
+        \vspace{-4.5mm}
+       \end{cvitems}}
+    \cventry
+	{Engineering Intern, Mechanical Design Engineer}
+	{SV Automotive Engineering}
+	{Ontario, California}
+	{June 2021 - August 2021, November 2023 – May 2024}
+	{\begin{cvitems}
+        \item{Supported custom vehicle builds through part design, collaboration with third-party manufacturers, independent assembly projects, parts list generation, and hands-on engineering support across multiple programs.}
+        \item{Designed 3D-printed electronic enclosures and engineered bespoke components for key projects, such as, a crashed Porsche 959, fully reassembling a vintage ’67 911S, and performing meticulous disassembly and diagnostics on a totaled BMW X5.}
+        \item {Completed reconstruction of a scrapped car from a train crash to a SEMA design show finalist with the CSF SEMA 911 project car.}
+        \item{Designed and fabricated a twin turbo, Chromoly, Pagani styled exhaust system, and installed an engine for a Martini Racing-inspired ’78 911.}
+        \vspace{-2.5mm}
+    \end{cvitems}}
+    \cventry
+	{Manufacturing Engineering Intern}
+	{Eberspächer VAIREX}
+	{Lafayette, Colorado}
+	{June 2023 – August 2023}
+	{\begin{cvitems}
+        \item{Engaged in identifying and implementing process enhancements, playing a pivotal role in the reorganization and optimization of facility setups.} 
+        \item{Conducted work studies to identify and address operational inefficiencies within the process.}
+        \vspace{-2.5mm}
+        \end{cvitems}}
+    \cventry
+	{Mechanical Engineering Intern}
+	{Mercury Systems - Mission Systems Division}
+	{Torrance, California}
+	{June 2022 – August 2022}
+	{\begin{cvitems}
+        \item{Developed a comprehensive thermodynamic model of an avionic mission control system and a head-mounted display.}
+        \item{Conducted thermal characterizations utilizing 6SigmaET, leveraging material qualities and thermodynamic equations to ensure optimal performance.}
+        \item{Implemented design enhancements in Creo and SOLIDWORKS managed changes with OnePDM to optimize heat sink thermal efficiency.}
+        \vspace{-1.5mm}
+        \end{cvitems}}
+\end{cventries}
+\vspace{-5mm}
+\cvsection{Engineering Projects}
+\vspace{-3mm}
+\begin{cventries}
+	\cventry
+	{CAD/Manufacturing Engineer}
+	{Industry Capstone Project: Autonomous Rover for Landfill Methane Monitoring}
+	{Design Center Colorado}
+	{August 2022 - May 2023}
+	{\begin{cvitems}
+	\item {Designed and built a proof-of-concept autonomous rover for the Hannigan Air Quality Lab and Waste Management to collect SEM data in landfill environments and evaluate low-cost automation feasibility, owning all SOLIDWORKS CAD (design, revisions, drawings), FEA of critical components, fabrication/manufacturing reviews, and integration with electronics.}
+ \vspace{-2.5mm}
+	\end{cvitems}}
+    \cventry
+	{Engineering Team Leader}
+	{Mobile Vision-Guided Projectile-Launching Robot Platform}
+	{MCEN 5115 - Mechatronics and Robotics I}
+	{August 2022 - May 2023}
+	{\begin{cvitems}
+	\item {Utilized a state-space model to navigate a predefined field, using sensing and OpenCV color detection to locate an opponent’s balloon, and accurately launch projectiles via a mecanum-drive platform with a high-speed flywheel launcher.}
+ \vspace{-2.5mm}
+	\end{cvitems}}
+	\cventry
+	{Engineering Team Leader}
+	{Manufacturability Reports}
+	{MCEN 5045 - Design for Manufacturability }
+	{January 2023 - May 2023}
+	{\begin{cvitems}
+	\item {Led team-based manufacturability analyses on existing and new products, including reverse-engineering a Fujifilm Quicksnap Flash 400 disposable camera and designing a compact spice dispenser, using DFM/DFA, process selection, assembly and cost breakdowns, and ethical/safety considerations to improve cost and assembly efficiency.}
+ \vspace{-2.5mm}
+	\end{cvitems}}
+\end{cventries}
+\end{document}
