@@ -1,5 +1,6 @@
 # Build and open resume.tex
-$resumeDir = Join-Path $PSScriptRoot "resume"
+# The script lives in the `resume` folder; use the script root as the resume dir
+$resumeDir = $PSScriptRoot
 $texFile = Join-Path $resumeDir "resume.tex"
 $pdfFile = Join-Path $resumeDir "resume.pdf"
 
@@ -7,18 +8,49 @@ $pdfFile = Join-Path $resumeDir "resume.pdf"
 Push-Location $resumeDir
 
 try {
-    # Compile LaTeX to PDF (using xelatex)
-    Write-Host "Compiling resume.tex..."
-    xelatex -interaction=nonstopmode resume | Out-Null
-    
+    # Determine which LaTeX engine is available
+    $xelatex = Get-Command xelatex -ErrorAction SilentlyContinue
+    $pdflatex = Get-Command pdflatex -ErrorAction SilentlyContinue
+
+    if ($xelatex) {
+        $latexCmd = "xelatex"
+    } elseif ($pdflatex) {
+        $latexCmd = "pdflatex"
+    } else {
+        Write-Host "[ERROR] No LaTeX engine found (xelatex or pdflatex)."
+        Write-Host "Run the setup script: `resume\setup-latex.ps1` or install MiKTeX/TeXLive."
+        exit 1
+    }
+
+    Write-Host "Compiling resume.tex using: $latexCmd"
+    # Suppress MiKTeX update checks and interactive prompts
+    & $latexCmd --no-miktex-admin --interaction=nonstopmode resume.tex 2>&1 | Out-Null
+
     # Check if PDF was created
     if (Test-Path $pdfFile) {
         Write-Host "[SUCCESS] Resume compiled successfully: $pdfFile"
-        # Open the PDF
-        Start-Process $pdfFile
-        Write-Host "Opening resume in default PDF viewer..."
+
+        # Clean up common LaTeX auxiliary files to keep the folder tidy
+        $auxPatterns = @(
+            '*.aux', '*.log', '*.out', '*.toc', '*.lof', '*.lot',
+            '*.bbl', '*.blg', '*.synctex.gz', '*.xdv', '*.fls', '*.fdb_latexmk'
+        )
+        foreach ($pat in $auxPatterns) {
+            $files = Get-ChildItem -Path $resumeDir -Filter $pat -File -ErrorAction SilentlyContinue
+            foreach ($f in $files) {
+                try {
+                    Remove-Item -LiteralPath $f.FullName -Force -ErrorAction SilentlyContinue
+                } catch {
+                    # If removal fails, continue without stopping the build
+                }
+            }
+        }
+
+        # Open the PDF in VS Code (non-blocking)
+        Start-Process -FilePath code -ArgumentList $pdfFile -WindowStyle Hidden
+        Write-Host "Opening resume in VS Code..."
     } else {
-        Write-Host "[ERROR] Failed to compile resume. Check your LaTeX installation."
+        Write-Host "[ERROR] Failed to compile resume. Check your LaTeX installation and logs."
         exit 1
     }
 } catch {
