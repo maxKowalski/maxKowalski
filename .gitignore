@@ -1,0 +1,4 @@
+# Ignore LaTeX auxiliary files
+*.log
+*.aux
+*.out

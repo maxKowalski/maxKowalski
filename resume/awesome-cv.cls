@@ -84,11 +84,13 @@
 % Needed to deal a paragraphs
 \RequirePackage{parskip}
 % Needed to deal hyperlink
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  urlcolor=blue
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    filecolor=blue,
+    citecolor=blue
 }
 
 %-------------------------------------------------------------------------------
