@@ -23,8 +23,15 @@ try {
     }
 
     Write-Host "Compiling resume.tex using: $latexCmd"
-    # Suppress MiKTeX update checks and interactive prompts
-    & $latexCmd --no-miktex-admin --interaction=nonstopmode resume.tex 2>&1 | Out-Null
+
+    # If an old PDF exists, remove it so the viewer receives a fresh file
+    if (Test-Path $pdfFile) {
+        try { Remove-Item -LiteralPath $pdfFile -Force -ErrorAction SilentlyContinue } catch {}
+    }
+
+    # Run the engine twice to resolve cross-references/TOC
+    & $latexCmd -interaction=nonstopmode resume.tex 2>&1 | Out-Null
+    & $latexCmd -interaction=nonstopmode resume.tex 2>&1 | Out-Null
 
     # Check if PDF was created
     if (Test-Path $pdfFile) {
@@ -46,9 +53,7 @@ try {
             }
         }
 
-        # Open the PDF in VS Code (non-blocking)
-        Start-Process -FilePath code -ArgumentList $pdfFile -WindowStyle Hidden
-        Write-Host "Opening resume in VS Code..."
+        Write-Host "Resume PDF is ready at: $pdfFile"
     } else {
         Write-Host "[ERROR] Failed to compile resume. Check your LaTeX installation and logs."
         exit 1
