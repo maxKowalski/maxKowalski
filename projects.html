@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projects — Max Kowalski</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem; max-width: 900px; line-height: 1.5; }
+    header { margin-bottom: 2rem; }
+    nav a { margin-right: 1rem; text-decoration: none; }
+    section { margin-bottom: 2rem; }
+    .project { border: 1px solid #ddd; border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 1rem; }
+    .project h3 { margin-top: 0; margin-bottom: 0.3rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Projects</h1>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="projects">
+    <h2>Selected Projects</h2>
+
+    <article class="project">
+      <h3>Autonomous Mobile-Manipulation Robot</h3>
+      <p><strong>Role:</strong> Lead Mechanical Engineer</p>
+      <ul>
+        <li>Owned design, integration, and testing of multi-DOF robotic tooling and custom AMR platform.</li>
+        <li>Developed production-intent mechanisms with DFM/DFA and reliability in mind.</li>
+        <li>Coordinated with suppliers for CNC, additive, and electronic assemblies.</li>
+      </ul>
+    </article>
+
+    <article class="project">
+      <h3>Mobile Vision-Guided Projectile-Launching Robot</h3>
+      <p><strong>Role:</strong> Mechatronics & Controls</p>
+      <ul>
+        <li>Led a 5-person team building a sub-$200 autonomous mecanum-drive robot with modular launcher.</li>
+        <li>Implemented state-space drive model, PD wall-alignment, dual-ultrasonics + IMU, and OpenCV-based vision targeting.</li>
+      </ul>
+    </article>
+
+    <article class="project">
+      <h3>Autonomous Rover for Landfill Methane Monitoring</h3>
+      <p><strong>Role:</strong> CAD/Manufacturing Engineer, Mechanical Team Lead</p>
+      <ul>
+        <li>Designed and built an autonomous rocker–bogie rover for landfill surface emission monitoring; led suspension and drivetrain design and BOM management.</li>
+        <li>Performed FEA, led DFM/DFA reviews with industry partners, and managed revision-controlled CAD with GD&amp;T.</li>
+      </ul>
+    </article>
+
+    <article class="project">
+      <h3>Manufacturability Reports & Reverse-Engineering</h3>
+      <p><strong>Role:</strong> Engineering Team Member</p>
+      <ul>
+        <li>Reverse-engineered a disposable camera and produced cost- and assembly-efficiency improvements; designed a refillable spice dispenser and applied DFM metrics to reduce assembly errors.</li>
+      </ul>
+    </article>
+
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Max Kowalski</p>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

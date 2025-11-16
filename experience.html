@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Experience — Max Kowalski</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem; max-width: 900px; line-height: 1.5; }
+    header { margin-bottom: 2rem; }
+    nav a { margin-right: 1rem; text-decoration: none; }
+    section { margin-bottom: 2rem; }
+    .job { border: 1px solid #ddd; border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 1rem; }
+    .job h3 { margin-top: 0; margin-bottom: 0.3rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Professional Experience</h1>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="experience">
+    <article class="job">
+      <h3>Electro-Mechanical Engineer — Kazvu Labs</h3>
+      <p><strong>May 2024 – Present | Anaheim, CA</strong></p>
+      <ul>
+        <li>Co-designed, built, and integrated a 1.8 m 7-axis collaborative robotic arm for human-centric tasks.</li>
+        <li>Owned end-to-end development of three custom actuator sizes (strain-wave gearboxes, 3-phase BLDC motors, ~63–298 Nm): design, vendor relations, verification testing, jigs, GD&amp;T drawings, and assembly instructions.</li>
+        <li>Delivered alpha unit in 13 months at ~50% of UR10e BOM cost with ±0.5mm accuracy and 100% workspace coverage.</li>
+        <li>Integrated custom brake, dual absolute encoders, bearing preload, and commissioned motion controllers; electrical interface design and harnessing.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <h3>Engineering Intern, Mechanical Design — SV Automotive Engineering</h3>
+      <p><strong>June 2021 & Nov 2023 – May 2024 | Ontario, CA</strong></p>
+      <ul>
+        <li>Supported 6 custom vehicle builds: part design, third-party manufacturer collaboration, assembly, and parts lists for restoration and diagnostics.</li>
+        <li>Designed 3D-printed enclosures and modeled legacy components; contributed to a SEMA show finalist rebuild.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <h3>Manufacturing Engineering Intern — Eberspächer VAIREX</h3>
+      <p><strong>June 2023 – August 2023 | Lafayette, CO</strong></p>
+      <ul>
+        <li>Performed time studies, documented cycle times, identified bottlenecks and defects, and implemented Lean / 5S improvements.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <h3>Mechanical Engineering Intern — Mercury Systems (Mission Systems)</h3>
+      <p><strong>June 2022 – August 2022 | Torrance, CA</strong></p>
+      <ul>
+        <li>Developed thermodynamic models and conducted thermal characterization with 6SigmaET; implemented design changes in CREO and SolidWorks.</li>
+      </ul>
+    </article>
+
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Max Kowalski</p>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
