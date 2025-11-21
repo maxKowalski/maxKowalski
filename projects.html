@@ -2,72 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Projects — Max Kowalski</title>
+  <title>Projects - Max Kowalski</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem; max-width: 900px; line-height: 1.5; }
-    header { margin-bottom: 2rem; }
-    nav a { margin-right: 1rem; text-decoration: none; }
-    section { margin-bottom: 2rem; }
-    .project { border: 1px solid #ddd; border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 1rem; }
-    .project h3 { margin-top: 0; margin-bottom: 0.3rem; }
+    :root {
+      --bg: #0b0f17;
+      --panel: rgba(255, 255, 255, 0.05);
+      --card: rgba(255, 255, 255, 0.08);
+      --stroke: rgba(255, 255, 255, 0.12);
+      --fg: #e9edf5;
+      --muted: #96a0b5;
+      --accent: #6cf6d5;
+      --accent-2: #4fa2ff;
+      --shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      --radius: 18px;
+      --maxw: 1100px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #05060a, #0e1322 45%, #0b1220);
+      color: var(--fg);
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #9afbe3; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 23, 0.82);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+    .brand .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(108,246,213,0.9);
+    }
+    .nav-links a {
+      margin-left: 18px;
+      color: var(--fg);
+      font-weight: 500;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+    }
+    .nav-links a:hover { border-color: var(--accent); }
+    main { max-width: var(--maxw); margin: 0 auto; padding: 32px 24px 64px; }
+    h1 { margin: 0 0 8px; font-size: clamp(30px, 3.6vw, 42px); }
+    .lede { margin: 0 0 20px; color: var(--muted); max-width: 60ch; }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 10px;
+      min-height: 280px;
+    }
+    .thumb {
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid var(--stroke);
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35));
+    }
+    h3 { margin: 0; font-size: 20px; }
+    .meta { color: var(--muted); font-size: 14px; margin: 0; }
+    ul { margin: 0; padding-left: 18px; color: #d9deeb; }
+    li { margin-bottom: 6px; }
+    footer { margin-top: 42px; text-align: center; color: var(--muted); font-size: 14px; }
+    @media (max-width: 900px) {
+      .nav { flex-wrap: wrap; }
+      .nav-links { width: 100%; display: flex; gap: 16px; flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Projects</h1>
-    <nav>
-      <a href="index.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="experience.html">Experience</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> Max Kowalski</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#cad">CAD</a>
+        <a href="index.html#projects">Carousel</a>
+        <a href="experience.html">Experience</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
   </header>
 
-  <section id="projects">
-    <h2>Selected Projects</h2>
+  <main>
+    <h1>Projects</h1>
+    <p class="lede">Deeper cuts on the builds shown on the homepage carousel. Replace the background placeholders with your own imagery.</p>
 
-    <article class="project">
-      <h3>Autonomous Mobile-Manipulation Robot</h3>
-      <p><strong>Role:</strong> Lead Mechanical Engineer</p>
-      <ul>
-        <li>Owned design, integration, and testing of multi-DOF robotic tooling and custom AMR platform.</li>
-        <li>Developed production-intent mechanisms with DFM/DFA and reliability in mind.</li>
-        <li>Coordinated with suppliers for CNC, additive, and electronic assemblies.</li>
-      </ul>
-    </article>
+    <div class="projects">
+      <article class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80');"></div>
+        <h3>Autonomous Mobile-Manipulation Robot</h3>
+        <p class="meta">Lead Mechanical Engineer - production-intent AMR and tooling</p>
+        <ul>
+          <li>Owned multi-DOF end-effector, AMR chassis, and integration for commercial deployment.</li>
+          <li>Designed for DFM/DFA with vendor coordination across CNC, additive, and electronics.</li>
+          <li>Delivered validation fixtures, test plans, and assembly documentation.</li>
+        </ul>
+      </article>
 
-    <article class="project">
-      <h3>Mobile Vision-Guided Projectile-Launching Robot</h3>
-      <p><strong>Role:</strong> Mechatronics & Controls</p>
-      <ul>
-        <li>Led a 5-person team building a sub-$200 autonomous mecanum-drive robot with modular launcher.</li>
-        <li>Implemented state-space drive model, PD wall-alignment, dual-ultrasonics + IMU, and OpenCV-based vision targeting.</li>
-      </ul>
-    </article>
+      <article class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1200&q=80');"></div>
+        <h3>Mobile Vision-Guided Launcher</h3>
+        <p class="meta">Mechatronics and Controls - state-space and computer vision</p>
+        <ul>
+          <li>Led a 5-person team building a sub-$200 mecanum robot with modular launcher.</li>
+          <li>Implemented state-space drive modeling, PD wall alignment, dual ultrasonic and IMU fusion.</li>
+          <li>OpenCV targeting pipeline with autonomous acquisition and launch.</li>
+        </ul>
+      </article>
 
-    <article class="project">
-      <h3>Autonomous Rover for Landfill Methane Monitoring</h3>
-      <p><strong>Role:</strong> CAD/Manufacturing Engineer, Mechanical Team Lead</p>
-      <ul>
-        <li>Designed and built an autonomous rocker–bogie rover for landfill surface emission monitoring; led suspension and drivetrain design and BOM management.</li>
-        <li>Performed FEA, led DFM/DFA reviews with industry partners, and managed revision-controlled CAD with GD&amp;T.</li>
-      </ul>
-    </article>
+      <article class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1200&q=80');"></div>
+        <h3>Landfill Rover</h3>
+        <p class="meta">Mechanical Lead - rocker-bogie rover for methane monitoring</p>
+        <ul>
+          <li>Designed suspension and drivetrain; performed FEA and GD&T for supplier-ready drawings.</li>
+          <li>Managed BOM, revision control, and integration reviews with industry partners.</li>
+          <li>Delivered manufacturable chassis with sensor payload and battery packaging.</li>
+        </ul>
+      </article>
 
-    <article class="project">
-      <h3>Manufacturability Reports & Reverse-Engineering</h3>
-      <p><strong>Role:</strong> Engineering Team Member</p>
-      <ul>
-        <li>Reverse-engineered a disposable camera and produced cost- and assembly-efficiency improvements; designed a refillable spice dispenser and applied DFM metrics to reduce assembly errors.</li>
-      </ul>
-    </article>
+      <article class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80');"></div>
+        <h3>Manufacturability and Reverse-Engineering</h3>
+        <p class="meta">Engineering Team Member - cost and assembly efficiency</p>
+        <ul>
+          <li>Reverse-engineered a disposable camera; proposed cost and assembly improvements.</li>
+          <li>Designed a refillable consumer dispenser applying DFM metrics to reduce errors.</li>
+        </ul>
+      </article>
+    </div>
 
-  </section>
-
-  <footer>
-    <p>&copy; <span id="year"></span> Max Kowalski</p>
-  </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <footer>
+      &copy; <span id="year"></span> Max Kowalski - <a href="index.html">Back to home</a>
+    </footer>
+  </main>
+  <script>
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

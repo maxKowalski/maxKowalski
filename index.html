@@ -2,106 +2,502 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Max Kowalski – Engineering Portfolio</title>
+  <title>Max Kowalski - Engineering Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #0b0f17;
+      --panel: rgba(255, 255, 255, 0.05);
+      --card: rgba(255, 255, 255, 0.08);
+      --stroke: rgba(255, 255, 255, 0.12);
+      --fg: #e9edf5;
+      --muted: #96a0b5;
+      --accent: #6cf6d5;
+      --accent-2: #4fa2ff;
+      --shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      --radius: 18px;
+      --maxw: 1200px;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
-      padding: 2rem;
-      max-width: 900px;
-      line-height: 1.5;
+      font-family: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(108,246,213,0.12), transparent 40%),
+                  radial-gradient(circle at 80% 0%, rgba(79,162,255,0.18), transparent 35%),
+                  linear-gradient(135deg, #05060a, #0e1322 45%, #0b1220);
+      color: var(--fg);
+      min-height: 100vh;
     }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #9afbe3; }
     header {
-      margin-bottom: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 23, 0.7);
+      border-bottom: 1px solid var(--stroke);
     }
-    h1 { margin-bottom: 0.2rem; }
-    nav a {
-      margin-right: 1rem;
-      text-decoration: none;
+    .nav {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
-    section {
-      margin-bottom: 2rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
     }
-    .project {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
+    .brand .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(108,246,213,0.9);
     }
-    .project h3 {
-      margin-top: 0;
-      margin-bottom: 0.3rem;
+    .nav-links a {
+      margin-left: 18px;
+      color: var(--fg);
+      font-weight: 500;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
     }
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
+    .nav-links a:hover { border-color: var(--accent); }
+    main { max-width: var(--maxw); margin: 0 auto; padding: 32px 24px 64px; }
+    section { margin: 48px 0; }
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: center;
+      padding: 28px;
+      border-radius: calc(var(--radius) + 6px);
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(108,246,213,0.05), rgba(79,162,255,0.08));
+      pointer-events: none;
+    }
+    .hero h1 { margin: 0 0 10px; font-size: clamp(32px, 4vw, 46px); }
+    .tagline { color: var(--muted); margin: 0 0 14px; max-width: 34ch; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0 18px; }
+    .chip {
+      padding: 8px 12px;
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--fg);
+      font-size: 14px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+    .btn {
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #05101a;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .btn.secondary {
+      background: transparent;
+      color: var(--fg);
+      border-color: var(--stroke);
+    }
+    .portrait {
+      position: relative;
+      justify-self: center;
+      width: clamp(220px, 26vw, 280px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(108,246,213,0.25), transparent 55%),
+                  linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid var(--stroke);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow);
+    }
+    .portrait::before, .portrait::after {
+      content: "";
+      position: absolute;
+      inset: 14%;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.2);
+    }
+    .portrait::after { inset: 8%; border-style: solid; opacity: 0.6; }
+    .portrait span {
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-align: center;
+      padding: 18px;
+      line-height: 1.3;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+    .section-head h2 { margin: 0; font-size: 26px; }
+    .section-head p { margin: 0; color: var(--muted); }
+    .cad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .cad {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(108,246,213,0.08), rgba(79,162,255,0.14));
+      border: 1px solid var(--stroke);
+      display: flex;
+      align-items: flex-end;
+      color: var(--fg);
+      padding: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .cad small { color: var(--muted); display: block; font-weight: 500; }
+    .cad::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35));
+    }
+    .cad-content { position: relative; z-index: 1; }
+
+    /* Projects carousel */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 400ms ease;
+      will-change: transform;
+    }
+    .slide {
+      min-width: 100%;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+      padding: 22px;
+      background-size: cover;
+      background-position: center;
+    }
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.55) 100%);
+    }
+    .slide-content {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+    }
+    .slide h3 { margin: 0 0 6px; font-size: 22px; }
+    .slide p { margin: 0; color: #d9e4ff; }
+    .slide b { color: var(--accent); }
+    .carousel-controls {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .car-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--stroke);
+      background: rgba(5, 8, 14, 0.6);
+      color: #fff;
+      cursor: pointer;
+      pointer-events: auto;
+      margin: 0 12px;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      transition: transform 140ms ease;
+    }
+    .car-btn:hover { transform: translateY(-2px); }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 24px 6px 10px;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 2px;
+      background: var(--stroke);
+    }
+    .timeline-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      align-items: center;
+    }
+    .t-item {
+      position: relative;
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 160px;
+      opacity: 0.88;
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
+    .t-item:hover { transform: translateY(-4px); opacity: 1; }
+    .t-meta { font-size: 13px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.3px; }
+    .t-item h3 { margin: 2px 0 8px; font-size: 18px; }
+    .t-item p { margin: 0; color: #d7deec; }
+    .t-dot {
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 4px rgba(108,246,213,0.18);
+      border: 2px solid #05101a;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 20px;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      display: grid;
+      gap: 10px;
+    }
+    .footer {
+      margin-top: 46px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .nav { flex-wrap: wrap; }
+      .nav-links { width: 100%; display: flex; gap: 16px; flex-wrap: wrap; }
+      .timeline-line { display: none; }
+      .timeline-items { grid-template-columns: 1fr; }
+      .t-item { min-height: auto; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Max Kowalski</h1>
-    <p>Mechanical & Robotics Engineer</p>
-    <nav>
-      <a href="index.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="experience.html">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> Max Kowalski</div>
+      <div class="nav-links">
+        <a href="#cad">CAD</a>
+        <a href="#projects">Projects</a>
+        <a href="#timeline">Career</a>
+        <a href="#contact">Contact</a>
+        <a href="projects.html">All Projects</a>
+        <a href="experience.html">Full Experience</a>
+      </div>
+    </div>
   </header>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>
-      I design and build real-world robotic systems including custom actuators, motion platforms,
-      full autonomous mobile robots deployed in commercial applications. This portfolio highlights a selection  
-      of hands-on engineering projects, prototypes, and production-intent designs.
-    </p>
-  </section>
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Mechanical and Robotics Engineer building production-ready machines.</h1>
+        <p class="tagline">I design and ship custom actuators, motion platforms, and autonomous robots - from requirements to DFM, assembly, and on-site validation.</p>
+        <div class="chips">
+          <span class="chip">AMRs and manipulators</span>
+          <span class="chip">Strain-wave actuators</span>
+          <span class="chip">DFM / GD&T</span>
+          <span class="chip">C++ / Python / ROS2</span>
+        </div>
+        <div class="actions">
+          <a class="btn" href="resume/MaximilianKowalski.pdf" target="_blank" rel="noopener">View Resume (PDF)</a>
+          <a class="btn secondary" href="mailto:max@maxkowalski.com">Email Me</a>
+        </div>
+      </div>
+      <div class="portrait" aria-label="Portrait placeholder">
+        <span>Drop in a headshot here to match your style.</span>
+      </div>
+    </section>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>
-      I design and build real-world robotic systems including custom actuators, motion platforms,
-      full autonomous mobile robots deployed in commercial applications. This portfolio highlights a selection
-      of hands-on engineering projects, prototypes, and production-intent designs.
-    </p>
+    <section id="cad">
+      <div class="section-head">
+        <h2>CAD / Drawings</h2>
+        <p>Swap these with renders, drawings, or exploded views.</p>
+      </div>
+      <div class="cad-grid">
+        <div class="cad" style="background-image: linear-gradient(135deg, rgba(108,246,213,0.15), rgba(79,162,255,0.25));">
+          <div class="cad-content">Actuator cross-section <small>strain-wave gearbox + dual encoders</small></div>
+        </div>
+        <div class="cad" style="background-image: linear-gradient(135deg, rgba(79,162,255,0.2), rgba(108,246,213,0.18));">
+          <div class="cad-content">7-axis cobot arm <small>lightweight link + cable routing</small></div>
+        </div>
+        <div class="cad" style="background-image: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(79,162,255,0.18));">
+          <div class="cad-content">AMR chassis <small>sensor mast + battery tray + drivetrain</small></div>
+        </div>
+        <div class="cad" style="background-image: linear-gradient(135deg, rgba(108,246,213,0.12), rgba(255,255,255,0.1));">
+          <div class="cad-content">Custom fixture <small>alignment jig for assembly QA</small></div>
+        </div>
+      </div>
+    </section>
 
-    <h3>Technical Skills</h3>
-    <ul>
-      <li><strong>Design / Analysis:</strong> SolidWorks CSWA, SolidWorks Analysis, NX, CREO, Fusion360, 6SigmaET, mesh editors, PDM systems</li>
-      <li><strong>Programming / Controls:</strong> C++, Python, MATLAB, Simulink, Arduino, ROS2 (Humble), MoveIt2</li>
-      <li><strong>Engineering:</strong> GD&amp;T, DFM/DFA, systems engineering, manufacturing & assembly instructions, team management</li>
-      <li><strong>Manufacturing:</strong> 3-axis manual & CNC milling, CNC router, lathe, TIG/MIG welding, FDM/SLS/SLA 3D printing, bandsaw, drill press</li>
-      <li><strong>Robotics & Actuators:</strong> Actuator sizing, strain-wave gearboxes, BLDC motors, encoder integration, motion controller commissioning</li>
-    </ul>
-  </section>
+    <section id="projects">
+      <div class="section-head">
+        <h2>Feature Projects</h2>
+        <p>Auto-rotating carousel; hover to pause.</p>
+      </div>
+      <div class="carousel" aria-label="Project carousel">
+        <div class="carousel-track">
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1400&q=80');">
+            <div class="slide-content">
+              <h3>Autonomous Mobile-Manipulation Robot</h3>
+              <p><b>Role:</b> Lead mechanical - Multi-DOF tooling, AMR chassis, production-intent DFM, supplier coordination.</p>
+            </div>
+          </div>
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1400&q=80');">
+            <div class="slide-content">
+              <h3>Vision-Guided Launcher</h3>
+              <p><b>Role:</b> Mechatronics and controls - state-space drive model, OpenCV targeting, modular launcher.</p>
+            </div>
+          </div>
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1400&q=80');">
+            <div class="slide-content">
+              <h3>Landfill Rover</h3>
+              <p><b>Role:</b> CAD and manufacturing - rocker-bogie drive, FEA, GD&T, BOM and supplier-ready drawings.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="car-btn" data-dir="-1" aria-label="Previous slide">&lsaquo;</button>
+          <button class="car-btn" data-dir="1" aria-label="Next slide">&rsaquo;</button>
+        </div>
+      </div>
+      <p style="margin: 12px 4px 0; color: var(--muted);">See more detail in <a href="projects.html">Projects</a>.</p>
+    </section>
 
-  <section id="skills">
-    <h2>Technical Skills</h2>
-    <ul>
-      <li><strong>Design / Analysis:</strong> SolidWorks CSWA, SolidWorks Analysis, NX, CREO, Fusion360, 6SigmaET, mesh editors, PDM systems</li>
-      <li><strong>Programming / Controls:</strong> C++, Python, MATLAB, Simulink, Arduino, ROS2 (Humble), MoveIt2</li>
-      <li><strong>Engineering:</strong> GD&amp;T, DFM/DFA, systems engineering, manufacturing & assembly instructions, team management</li>
-      <li><strong>Manufacturing:</strong> 3-axis manual & CNC milling, CNC router, lathe, TIG/MIG welding, FDM/SLS/SLA 3D printing, bandsaw, drill press</li>
-      <li><strong>Robotics & Actuators:</strong> Actuator sizing, strain-wave gearboxes, BLDC motors, encoder integration, motion controller commissioning</li>
-    </ul>
-  </section>
+    <section id="timeline">
+      <div class="section-head">
+        <h2>Career Timeline</h2>
+        <p>Highlights with a time graph feel.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-items">
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-meta">2024 - Present / Kazvu Labs</div>
+            <h3>Electro-Mechanical Engineer</h3>
+            <p>Co-designed a 1.8 m 7-axis cobot; delivered three custom strain-wave actuator sizes with dual encoders and brakes.</p>
+          </div>
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-meta">2023 - 2024 / SV Automotive Engineering</div>
+            <h3>Mechanical Design Intern</h3>
+            <p>Supported six custom vehicle builds, modeled legacy parts, and delivered 3D-printed enclosures for SEMA-finalist work.</p>
+          </div>
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-meta">2023 / Eberspaecher VAIREX</div>
+            <h3>Manufacturing Engineering Intern</h3>
+            <p>Ran time studies, identified bottlenecks, and implemented lean improvements across production cells.</p>
+          </div>
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-meta">2022 / Mercury Systems</div>
+            <h3>Mechanical Engineering Intern</h3>
+            <p>Built thermodynamic models and implemented cooling design changes in CREO and SolidWorks for ruggedized systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:max@maxkowalski.com">max@maxkowalski.com</a></p>
-    <!-- You can add a link to your Instagram handle textually here (no hyperlink if you prefer) -->
-  </section>
+    <section id="contact">
+      <div class="contact">
+        <div class="section-head" style="margin:0;">
+          <h2>Contact</h2>
+          <p>Let's build something.</p>
+        </div>
+        <div>Email: <a href="mailto:max@maxkowalski.com">max@maxkowalski.com</a></div>
+        <div>LinkedIn: <a href="https://www.linkedin.com" target="_blank" rel="noopener">Add your link</a></div>
+        <div>Resume: <a href="resume/MaximilianKowalski.pdf" target="_blank" rel="noopener">PDF download</a></div>
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; <span id="year"></span> Max Kowalski</p>
-  </footer>
+    <div class="footer">
+      &copy; <span id="year"></span> Max Kowalski
+    </div>
+  </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    const track = document.querySelector(".carousel-track");
+    const slides = [...document.querySelectorAll(".slide")];
+    const buttons = document.querySelectorAll(".car-btn");
+    let index = 0;
+    let auto = null;
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+    function next(step = 1) { goTo(index + step); }
+    function startAuto() {
+      stopAuto();
+      auto = setInterval(() => next(1), 4800);
+    }
+    function stopAuto() { if (auto) clearInterval(auto); }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const dir = Number(btn.dataset.dir || 1);
+        next(dir);
+        startAuto();
+      });
+    });
+    document.querySelector(".carousel")?.addEventListener("mouseenter", stopAuto);
+    document.querySelector(".carousel")?.addEventListener("mouseleave", startAuto);
+    startAuto();
   </script>
 </body>
 </html>
